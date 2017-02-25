@@ -2,8 +2,6 @@ class board:
         def __init__(self, values):
             self.values = values
 
-        def swap(a,b):
-            a,b = b,a
 
         def move(self, direction): #directions = [U,D,L,R]
             if direction == 0: #up
@@ -51,31 +49,9 @@ def main():
         dirs = {"up": 0, "down":1, "left": 2, "right": 3}
         b.print_board()
         print("")
-        b.move(0)
-        b.print_board()
-        print("")
-        b.move(dirs["right"])
-        b.print_board()
-        print("")
-        b.move(dirs["right"])
-        b.print_board()
-        print("")
-        b.move(dirs["left"])
-        b.print_board()
-        print("")
-        b.move(dirs["up"])
-        b.print_board()
-        print("")
-        b.move(dirs["up"])
-        b.print_board()
-        print("")
-        b.move(dirs["down"])
-        b.print_board()
-        print("")
-        b.move(dirs["down"])
-        b.print_board()
-        print("")
-        b.move(dirs["up"])
-        b.print_board()
+        # b.move(dirs["up"])
+        # b.print_board()
+        # print("")
+
 if __name__ == '__main__':
     main()
