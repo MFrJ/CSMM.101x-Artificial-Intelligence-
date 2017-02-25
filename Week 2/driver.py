@@ -1,35 +1,81 @@
 class board:
+        def __init__(self, values):
+            self.values = values
 
+        def swap(a,b):
+            a,b = b,a
 
-    # class Space:
-    #     def __init__(self, value, neighbors = [None, None, None, None]): #[U,D,L,R]
-    #         self.value = value
-    #         self.neighbors = neighbors
-    #     def link(self, node, direction): #direction relative to this node
-    #         d = {0:1, 1:0, 2:3, 3:2}
-    #         self.neighbors[direction] = node
-    #         node.neighbors[d[direction]] = self
+        def move(self, direction): #directions = [U,D,L,R]
+            if direction == 0: #up
+                if self.values.index(0) + 3 <= 8: #blank space not in bottom row
+                    i = self.values.index(0)
+                    temp = self.values[i + 3]
+                    self.values[i + 3] = 0
+                    self.values[i] = temp
+                else:
+                    pass
+            elif direction == 1: #down
+                if self.values.index(0) - 3 >= 0: #blank space not in top row
+                    i = self.values.index(0)
+                    temp = self.values[i - 3]
+                    self.values[i - 3] = 0
+                    self.values[i] = temp
+                else:
+                    pass
+            elif direction == 2: #left
+                if (self.values.index(0) + 1) % 3 != 0: #blank space not in right column
+                    i = self.values.index(0)
+                    temp = self.values[i + 1]
+                    self.values[i + 1] = 0
+                    self.values[i] = temp
+                else:
+                    pass
+            elif direction == 3: #right
+                if self.values.index(0) % 3 != 0: #blank space not in left column
+                    i = self.values.index(0)
+                    temp = self.values[i - 1]
+                    self.values[i - 1] = 0
+                    self.values[i] = temp
+                else:
+                    pass
 
+        def print_board(self):
+                for i in range(9):
+                    print(self.values[i], end="  ")
+                    if (i+1) % 3 == 0:
+                        print("\n", end="")
 
-
-    def __init__(self, values):
-        self.values = list(values)
-        # for x in values:
-        #     self.nodes.append(Node(x))
-        #
-        #     if values.index(x) < 3: #first row
-        #         if values.index(x) != 0:
-        #             self.nodes[values.index(x)].link(self.nodes[values.index(x)]- 1, 2)
-        #
-        #     else:
-        #         self.nodes[values.index(x)].link(self.nodes[values.index(x)]- 3, 0)
-        #         if values.index(x) != 3 and values.index(x) != 6:
-        #             self.nodes[values.index(x)].link(self.nodes[values.index(x)]- 1, 2)
-
-    def move(self, direction): #directions = [U,D,L,R]
-        if direction == 0:
-            if self.values.index(0) + 3 <= 5:
-                self.values[self.values.index(0)], self.values[self.values.index(0) + 3] = self.values[self.values.index(0) + 3], self.values[self.values.index(0)]
-            else:
-                pass
-        elif direction ==
+def main():
+        l = [int(x) for x in "1,2,5,3,4,0,6,7,8".split(",")]
+        b = board(l)
+        dirs = {"up": 0, "down":1, "left": 2, "right": 3}
+        b.print_board()
+        print("")
+        b.move(0)
+        b.print_board()
+        print("")
+        b.move(dirs["right"])
+        b.print_board()
+        print("")
+        b.move(dirs["right"])
+        b.print_board()
+        print("")
+        b.move(dirs["left"])
+        b.print_board()
+        print("")
+        b.move(dirs["up"])
+        b.print_board()
+        print("")
+        b.move(dirs["up"])
+        b.print_board()
+        print("")
+        b.move(dirs["down"])
+        b.print_board()
+        print("")
+        b.move(dirs["down"])
+        b.print_board()
+        print("")
+        b.move(dirs["up"])
+        b.print_board()
+if __name__ == '__main__':
+    main()
